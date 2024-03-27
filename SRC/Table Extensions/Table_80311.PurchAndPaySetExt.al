@@ -28,6 +28,4 @@ tableextension 80311 PurchAndPaySetExt extends "Purchases & Payables Setup"
         }
 
     }
-
-
 }
