@@ -13,6 +13,7 @@ pageextension 80314 VendorLedgerEntryExt extends "Vendor Ledger Entries"
             {
                 ApplicationArea = All;
                 Caption = 'Calculate Stamp Duty';
+                Image = Calculate;
                 trigger OnAction()
                 var
                     VendorLedgerEntry: Record "Vendor Ledger Entry";
@@ -21,7 +22,7 @@ pageextension 80314 VendorLedgerEntryExt extends "Vendor Ledger Entries"
                     VendorStampSettelmentPage: Page "Vendor Stamp Settelment";
                     EntryNo: Integer;
                 begin
-                    if SelectDateRangePage.RunModal() = Action::OK then begin
+                    if (SelectDateRangePage.RunModal() = Action::OK) and (SelectDateRangePage.From_Date() <> 0D) then begin
                         VendorLedgerEntry.SetFilter("Posting Date", '%1..%2', SelectDateRangePage.From_Date(), SelectDateRangePage.To_Date());
                         if VendorLedgerEntry.FindSet() then begin
                             VendorStampSettelmentRec.SetCurrentKey("Document No.");
@@ -49,7 +50,8 @@ pageextension 80314 VendorLedgerEntryExt extends "Vendor Ledger Entries"
                                 VendorStampSettelmentRec.Insert();
                             until VendorLedgerEntry.Next() = 0;
                         end;
-                    end;
+                    end else
+                        Message('Entet From Date Value');
                 end;
             }
         }
