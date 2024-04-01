@@ -29,7 +29,7 @@ pageextension 80314 VendorLedgerEntryExt extends "Vendor Ledger Entries"
                                 repeat
                                     VendorStampSettelmentRec.Delete();
                                 until VendorStampSettelmentRec.Next() = 0;
-                            Page.Run(80303);
+                            VendorStampSettelmentPage.Run();
                             repeat
                                 EntryNo += 1;
                                 VendorStampSettelmentRec.Reset();
