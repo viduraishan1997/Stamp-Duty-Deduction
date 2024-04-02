@@ -15,6 +15,10 @@ pageextension 80315 CustLedgerEntryExt extends "Customer Ledger Entries"
                 Caption = 'Calculate Stamp Duty';
                 Image = Calculate;
                 trigger OnAction()
+                var
+                    CustLedgerEntry: Record "Cust. Ledger Entry";
+                    SelectDateRangePage: Page "Select Date Range";
+                    
                 begin
 
                 end;
